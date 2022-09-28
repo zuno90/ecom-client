@@ -61,7 +61,6 @@ const Home: NextPage = () => {
                 </Container>
                 <Box
                     backgroundImage="url('/backgrounds/break-line-bg.png')"
-                    backgroundPosition="center"
                     backgroundRepeat="no-repeat"
                     py="8"
                 >
