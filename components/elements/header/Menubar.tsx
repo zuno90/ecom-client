@@ -2,7 +2,6 @@ import {
     Flex,
     Box,
     HStack,
-    Stack,
     Link,
     Icon,
     IconButton,
@@ -13,18 +12,16 @@ import {
     MenuItem,
     MenuDivider,
     useColorModeValue,
-    useColorMode,
     useDisclosure,
 } from "@chakra-ui/react"
 import { HamburgerIcon, CloseIcon } from "@chakra-ui/icons"
 import { GrCart } from "react-icons/gr"
 
 const Menubar: React.FC = () => {
-    const { colorMode, toggleColorMode } = useColorMode()
     const { isOpen, onOpen, onClose } = useDisclosure()
     return (
         <Flex
-            bg={useColorModeValue("white", "gray.600")}
+            bg={useColorModeValue("white", "gray.900")}
             px="4"
             py="2"
             boxShadow="base"
