@@ -1,17 +1,10 @@
 import {
     Box,
-    Grid,
-    GridItem,
     Heading,
     HStack,
     Image,
     Text,
     Tag,
-    Link,
-    useColorModeValue,
-    SpaceProps,
-    SimpleGrid,
-    VStack,
     Flex,
 } from "@chakra-ui/react"
 import { FaBookMedical } from "react-icons/fa"
@@ -25,34 +18,35 @@ const Blog: React.FC = () => {
                     Góc sức khoẻ
                 </Heading>
             </HStack>
-            <HStack mt="4" gap="2">
-                <Box w="100%">
-                    <Image
-                        borderRadius="lg"
-                        src="/articles/adenovirus-khi-nao-tre-can-nhap-vien-dieu-tri-noi-tru-DPjNz-1664268292_large.webp"
-                        alt="some good alt text"
-                        objectFit="contain"
-                    />
-                </Box>
-                <Flex w="100%" direction="column">
+            <Flex mt="4" gap="4">
+                <Box
+                    w="100%"
+                    borderRadius="lg"
+                    backgroundPosition="center"
+                    backgroundRepeat="no-repeat"
+                    backgroundSize="cover"
+                    backgroundImage={
+                        "/articles/adenovirus-khi-nao-tre-can-nhap-vien-dieu-tri-noi-tru-DPjNz-1664268292_large.webp"
+                    }
+                ></Box>
+                <Flex w="100%" direction="column" gap="2">
                     {articleList.map((item: any, index: number) => (
-                        <Box w="100%">
+                        <HStack key={index}>
                             <Image
-                                w="100%"
-                                h="auto"
+                                w="30%"
                                 borderRadius="lg"
                                 src={item.image}
                                 alt="some good alt text"
                                 objectFit="contain"
                             />
-                            <VStack align="stretch">
+                            <Box>
                                 <Heading size="md">{item.title}</Heading>
                                 <Text>3 ngày trước</Text>
-                            </VStack>
-                        </Box>
+                            </Box>
+                        </HStack>
                     ))}
                 </Flex>
-            </HStack>
+            </Flex>
         </>
     )
 }

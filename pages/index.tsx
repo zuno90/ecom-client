@@ -1,22 +1,24 @@
-import { Container, Box } from "@chakra-ui/react"
 import type { NextPage } from "next"
 import Head from "next/head"
+import { Container, Box, useColorModeValue } from "@chakra-ui/react"
 import Navbar from "../components/elements/header/Navbar"
 import Menubar from "../components/elements/header/Menubar"
 import Banner from "../components/elements/header/Banner"
 import Process from "../components/elements/intro/Process"
-import Outstanding from "../components/shop/Outstanding"
-import Special from "../components/shop/Special"
-import BestSell from "../components/shop/BestSell"
+import Outstanding from "../components/home/Outstanding"
+import Special from "../components/home/Special"
+import BestSell from "../components/home/BestSell"
 import Protection from "../components/home/Protection"
-import ProductByAudience from "../components/shop/ProductByAudience"
+import ProductByAudience from "../components/home/ProductByAudience"
 import Blog from "../components/home/Blog"
+import Footer from "../components/elements/footer/Footer"
 
 const Home: NextPage = () => {
     return (
         <>
             <Head>
-                <title>Pharmacy</title>
+                <title>Home | Pharmacy</title>
+                <meta name="viewport" content="initial-scale=1.0, width=device-width" />
                 <meta name="description" content="Pharmacy website" />
                 <link rel="icon" href="/favicon.ico" />
                 {/* carousel css */}
@@ -34,7 +36,7 @@ const Home: NextPage = () => {
                 {/* end carousel css */}
             </Head>
             <section className="__header">
-                <Box bg="navy" py="6" display={{ base: "none", md: "flex" }}>
+                <Box bg="navy" display={{ base: "none", md: "flex" }}>
                     <Container maxW="7xl">
                         <Navbar />
                     </Container>
@@ -59,11 +61,7 @@ const Home: NextPage = () => {
                 <Container maxW="7xl" py="8">
                     <BestSell />
                 </Container>
-                <Box
-                    backgroundImage="url('/backgrounds/break-line-bg.png')"
-                    backgroundRepeat="no-repeat"
-                    py="8"
-                >
+                <Box backgroundImage="url('/backgrounds/break-line-bg.png')" backgroundRepeat="no-repeat" py="8">
                     <Container maxW="7xl">
                         <Protection />
                     </Container>
@@ -74,6 +72,11 @@ const Home: NextPage = () => {
                 <Container maxW="7xl" py="8">
                     <Blog />
                 </Container>
+                <Box bg={useColorModeValue("gray.100", "gray.700")}>
+                    <Container maxW="7xl">
+                        <Footer />
+                    </Container>
+                </Box>
             </section>
         </>
     )

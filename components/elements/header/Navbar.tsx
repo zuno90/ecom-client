@@ -1,3 +1,4 @@
+import Link from "next/link"
 import {
     Flex,
     Spacer,
@@ -14,6 +15,7 @@ import {
     useColorModeValue,
     useColorMode,
     useDisclosure,
+    Image,
 } from "@chakra-ui/react"
 import { MoonIcon, SunIcon } from "@chakra-ui/icons"
 
@@ -22,10 +24,14 @@ const Navbar: React.FC = () => {
     const { isOpen, onOpen, onClose } = useDisclosure()
 
     return (
-        <Flex>
-            <Box>LOGO</Box>
+        <HStack>
+            <Link href="/">
+                <a>
+                    <Image boxSize="80px" src="/zuno.png" />
+                </a>
+            </Link>
             <Spacer />
-            <HStack gap="6">
+            <HStack gap="8">
                 <HStack>
                     <Icon as={MoonIcon} w={8} h={8} color="yellow.400" />
                     <Text color="white">Tài khoản</Text>
@@ -38,7 +44,7 @@ const Navbar: React.FC = () => {
                     {colorMode === "light" ? <MoonIcon /> : <SunIcon />}
                 </Button>
             </HStack>
-        </Flex>
+        </HStack>
     )
 }
 

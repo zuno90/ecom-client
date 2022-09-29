@@ -1,22 +1,30 @@
-import { Heading, HStack, Stack, useBreakpointValue } from "@chakra-ui/react"
+import { HStack, Heading, Stack, useBreakpointValue } from "@chakra-ui/react"
 import { FaBookMedical } from "react-icons/fa"
 import Carousel, { ECarousel } from "../elements/carousel/Carousel"
 
-const Special: React.FC = () => {
+interface IData {
+    id: number
+    title: string
+    price: number
+    image: string
+}
+type TData = Array<IData>
+
+const ShopBestSale = ({ data }: { data: TData }) => {
     return (
         <>
             <HStack spacing="2" color="white">
                 <FaBookMedical />
                 <Heading as="h4" size="md">
-                    Sản phẩm tăng sức đề kháng
+                    Sản phẩm bán chạy
                 </Heading>
             </HStack>
             <Stack mt="4">
                 <Carousel
                     // top={useBreakpointValue({ base: "50%", md: "50%" })}
                     type={ECarousel.product}
-                    numberOfItem={5}
-                    numberOfScroll={5}
+                    numberOfItem={4}
+                    numberOfScroll={4}
                     top="50%"
                     side={useBreakpointValue({ md: "5px" })}
                     changingSpeed={3000}
@@ -65,5 +73,4 @@ const data = [
     },
 ]
 
-
-export default Special
+export default ShopBestSale
