@@ -1,8 +1,9 @@
 import { useState } from "react"
 import Slider from "react-slick"
-import { Box, Flex, IconButton, Text, Stack, Heading, Image, SimpleGrid } from "@chakra-ui/react"
+import { Box, IconButton, Text, Stack, Heading, Image } from "@chakra-ui/react"
 import { BiLeftArrowAlt, BiRightArrowAlt } from "react-icons/bi"
 import { useCarouselSettings } from "../../../utilts/carousel"
+import { IData } from "../../../types/product.type"
 
 export enum ECarousel {
     banner = "banner",
@@ -61,7 +62,7 @@ const Carousel: React.FC<TCarouselBreakPoint> = ({
                 <BiRightArrowAlt size="40px" />
             </IconButton>
             <Slider {...settings} ref={(slider) => setSlider(slider)}>
-                {data.map((item: any, index: number) => {
+                {data.map((item: IData, index: number) => {
                     switch (type) {
                         // head banner
                         case ECarousel.banner:

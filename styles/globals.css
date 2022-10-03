@@ -9,3 +9,19 @@ body {
 .__product-slider .slick-slide {
     padding: 0 10px;
 }
+
+.__menu::before {
+    content: "";
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background-color: green;
+    visibility: "hidden";
+    transition: all 0.3s ease-in-out;
+}
+.__menu:hover::before {
+    visibility: visible;
+    width: 100%;
+}

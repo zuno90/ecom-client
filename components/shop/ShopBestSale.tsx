@@ -1,21 +1,14 @@
-import { HStack, Heading, Stack, useBreakpointValue } from "@chakra-ui/react"
+import { HStack, Heading, Stack, useBreakpointValue, Box } from "@chakra-ui/react"
 import { FaBookMedical } from "react-icons/fa"
 import Carousel, { ECarousel } from "../elements/carousel/Carousel"
-
-interface IData {
-    id: number
-    title: string
-    price: number
-    image: string
-}
-type TData = Array<IData>
+import { TData } from "../../types/product.type"
 
 const ShopBestSale = ({ data }: { data: TData }) => {
     return (
-        <>
-            <HStack spacing="2" color="white">
+        <Box my="8" p="4" bg="blue.400" rounded="lg">
+            <HStack spacing="2">
                 <FaBookMedical />
-                <Heading as="h4" size="md">
+                <Heading as="h4" color="white" size="md">
                     Sản phẩm bán chạy
                 </Heading>
             </HStack>
@@ -31,7 +24,7 @@ const ShopBestSale = ({ data }: { data: TData }) => {
                     data={data}
                 />
             </Stack>
-        </>
+        </Box>
     )
 }
 

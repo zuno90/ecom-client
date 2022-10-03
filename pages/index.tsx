@@ -72,12 +72,12 @@ const Home: NextPage = () => {
                 <Container maxW="7xl" py="8">
                     <Blog />
                 </Container>
-                <Box bg={useColorModeValue("gray.100", "gray.700")}>
-                    <Container maxW="7xl">
-                        <Footer />
-                    </Container>
-                </Box>
             </section>
+            <Box bg={useColorModeValue("gray.100", "gray.700")}>
+                <Container maxW="7xl">
+                    <Footer />
+                </Container>
+            </Box>
         </>
     )
 }
