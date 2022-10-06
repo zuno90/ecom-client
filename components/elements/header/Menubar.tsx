@@ -14,6 +14,7 @@ import {
 } from "@chakra-ui/react"
 import { HamburgerIcon, CloseIcon } from "@chakra-ui/icons"
 import { GrCart } from "react-icons/gr"
+import { menuList } from "../../../utilts/constants"
 
 const Menubar: React.FC = () => {
     const { isOpen, onOpen, onClose } = useDisclosure()
@@ -43,11 +44,16 @@ const Menubar: React.FC = () => {
                         </Link>
                     </Hide>
                     <HStack as="nav" spacing={4} display={{ base: "none", md: "flex" }}>
-                        {Links.map((item, index) => (
+                        {menuList.map((item, index) => (
                             <NavLink key={index} slug={item.slug}>
                                 {item.title}
                             </NavLink>
                         ))}
+                        <Link href="/blog">
+                            <Clink p="2" _hover={{ textDecoration: "none" }}>
+                                Blog
+                            </Clink>
+                        </Link>
                     </HStack>
                 </HStack>
                 <Icon as={GrCart} w={6} h={6} display={{ md: "none" }} color="yellow.400" />
@@ -55,11 +61,16 @@ const Menubar: React.FC = () => {
             {isOpen ? (
                 <Box display={{ md: "none" }}>
                     <Stack as="nav" spacing="4">
-                        {Links.map((item, index) => (
+                        {menuList.map((item, index) => (
                             <NavLink key={index} slug={item.slug}>
                                 {item.title}
                             </NavLink>
                         ))}
+                        <Link href="/blog">
+                            <Clink p="2" _hover={{ textDecoration: "none" }}>
+                                Blog
+                            </Clink>
+                        </Link>
                     </Stack>
                 </Box>
             ) : null}
@@ -67,13 +78,6 @@ const Menubar: React.FC = () => {
     )
 }
 
-const Links = [
-    { id: 1, title: "Thực phẩm chức năng", slug: "thuc-pham-chuc-nang" },
-    { id: 2, title: "Dược mỹ phẩm", slug: "duoc-my-pham" },
-    { id: 3, title: "Chăm sóc cá nhân", slug: "cham-soc-ca-nhan" },
-    { id: 4, title: "Thuốc", slug: "thuoc" },
-    { id: 5, title: "Thiết bị y tế", slug: "thiet-bi-y-te" },
-]
 const NavLink = ({ slug, children }: { slug: string; children: React.ReactNode }) => (
     <Clink
         className="__menu"
