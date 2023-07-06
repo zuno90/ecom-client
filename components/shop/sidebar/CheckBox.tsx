@@ -30,7 +30,7 @@ const CheckBox: React.FC<TCheckBox> = ({ name, title, list }) => {
     const { slug } = router.query
 
     const [filter, setFilter] = useState<TFilter[] | string[]>([])
-    const [checkedItems, setCheckedItems] = useState<boolean[]>([])
+    const [checkedItems, setCheckedItems] = useState<string[]>([])
     const allChecked = checkedItems.every(Boolean)
     const isIndeterminate = checkedItems.some(Boolean) && !allChecked
 
@@ -38,17 +38,26 @@ const CheckBox: React.FC<TCheckBox> = ({ name, title, list }) => {
 
     // handle onChange checkbox
     const handleOnCheckedItem = (isChecked: boolean, type: string, value: string) => {
-        setFilter([])
-        console.log({ isChecked, type, value })
-        if (value !== "all") {
-            if (isChecked) {
-                setFilter([...filter, { type, value }])
-            } else {
-                if (filter.includes({ type, value })) filter.filter((ele) => ele !== { type, value })
-            }
+        console.log(value, "check value")
+        let arrTemp = [...checkedItems]
+        if (checkedItems.includes(value)) {
+            if (arrTemp.length === 1)
+                return
+            arrTemp = arrTemp.filter((item) => item !== value)
+            console.log(arrTemp, "tempp")
+
         } else {
-            isChecked && setFilter([{ type, value }])
+            if (value === 'all') {
+                arrTemp = ['all']
+            }
+            else {
+                arrTemp = arrTemp.filter((item) => item !== 'all')
+                arrTemp.push(value)
+            }
         }
+        setCheckedItems(arrTemp)
+
+
         // setIsCheckedAll(false)
         // if (!isChecked) {
         //     const eQ = queryString.parse(window.location.search)
@@ -83,18 +92,21 @@ const CheckBox: React.FC<TCheckBox> = ({ name, title, list }) => {
             </InputGroup>
 
             <Stack direction="column">
-                {list.map((item, index) => (
+                {list.map((item, index) => {
+                    console.log(item, "check item")
                     // <CheckboxGroup key={index} defaultValue={["all"]}>
-                    <Checkbox
-                        isChecked={item.value === "all" ? allChecked : checkedItems[index]}
+                    return (<Checkbox
+                        key={index}
+                        isChecked={checkedItems.includes(item.value)}
                         isIndeterminate={item.value === "all" && isIndeterminate}
                         value={item.value}
                         onChange={(e) => handleOnCheckedItem(e.target.checked, name, e.target.value)}
                     >
                         {item.title}
-                    </Checkbox>
+                    </Checkbox>)
+                }
                     // </CheckboxGroup>
-                ))}
+                )}
             </Stack>
         </Stack>
     )
