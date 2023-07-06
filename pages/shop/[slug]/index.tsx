@@ -1,4 +1,3 @@
-import React from "react"
 import { NextPage } from "next"
 import { useRouter } from "next/router"
 import Head from "next/head"
@@ -9,6 +8,7 @@ import Breadcrumb from "../../../components/elements/breadcrumb/Breadcrumb"
 import SearchFilter from "../../../components/elements/search/SearchFilter"
 import ShopMainLayout from "../../../components/shop/ShopMainLayout"
 import Footer from "../../../components/elements/footer/Footer"
+import { menuList } from "../../../utilts/constants"
 
 const Topic: NextPage = (props) => {
     const router = useRouter()
@@ -65,12 +65,16 @@ const Topic: NextPage = (props) => {
     )
 }
 
-export async function getServerSideProps(ctx: any) {
-    console.log(ctx.query)
-    const brandQuery = ctx.query.brand
-    // call api
+export async function getStaticPaths() {
+    const paths = menuList.map((item) => ({ params: { slug: item.slug } }))
+    return { paths, fallback: false }
+}
+
+export async function getStaticProps({ params }: any) {
+    // check param
     return {
-        props: {}, // will be passed to the page component as props
+        // Passed to the page component as props
+        props: { post: {} },
     }
 }
 

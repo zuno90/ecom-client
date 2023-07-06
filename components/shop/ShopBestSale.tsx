@@ -5,7 +5,7 @@ import { TData } from "../../types/product.type"
 
 const ShopBestSale = ({ data }: { data: TData }) => {
     return (
-        <Box my="8" p="4" bg="blue.400" rounded="lg">
+        <Box mt="4" p="4" bg="blue.400" rounded="lg">
             <HStack spacing="2">
                 <FaBookMedical />
                 <Heading as="h4" color="white" size="md">

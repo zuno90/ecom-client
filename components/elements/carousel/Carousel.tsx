@@ -77,6 +77,7 @@ const Carousel: React.FC<TCarouselBreakPoint> = ({
                                     backgroundImage={`url(${item.image})`}
                                 ></Box>
                             )
+                            break
                         // product carousel
                         case ECarousel.product:
                             return (
@@ -90,6 +91,7 @@ const Carousel: React.FC<TCarouselBreakPoint> = ({
                                     </Stack>
                                 </Box>
                             )
+                            break
                     }
                 })}
             </Slider>
