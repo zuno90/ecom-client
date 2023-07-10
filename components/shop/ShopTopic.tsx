@@ -37,7 +37,7 @@ const ShopTopic: React.FC = () => {
           <Box width={{ base: "100%", sm: "50%" }} zIndex="2">
             <Link textDecoration="none" _hover={{ textDecoration: "none" }}>
               <Image
-                src="https://images.unsplash.com/photo-1499951360447-b19be8fe80f5?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=800&q=80"
+                src="https://cdn.nhathuoclongchau.com.vn/unsafe/1440x414/filters:quality(95)/https://cms-prod.s3-sgn09.fptcloud.com/Top_Banner_PC_1440x414_bc00827a4e.png"
                 alt="some good alt text"
                 objectFit="cover"
               />

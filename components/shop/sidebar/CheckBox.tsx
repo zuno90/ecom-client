@@ -1,15 +1,6 @@
 import { useRouter } from "next/router"
 import { useEffect, useState } from "react"
-import {
-  Stack,
-  Heading,
-  InputGroup,
-  InputLeftElement,
-  Input,
-  Checkbox,
-  CheckboxGroup,
-  useCheckboxGroup,
-} from "@chakra-ui/react"
+import { Stack, Heading, InputGroup, InputLeftElement, Input, Checkbox } from "@chakra-ui/react"
 import { SearchIcon } from "@chakra-ui/icons"
 import queryString from "query-string"
 
@@ -28,16 +19,45 @@ const CheckBox: React.FC<TCheckBox> = ({ name, title, list }) => {
   const router = useRouter()
   const { slug } = router.query
   const f = router.query["filters[]"]
+  if (f) {
+    const q = queryString.parse(`filters[]=${f}`, {
+      arrayFormat: "bracket-separator",
+      arrayFormatSeparator: "|",
+    })
+    console.log(q, "query")
+  }
 
   const [filter, setFilter] = useState<TFilter | null>(null)
+
+  const [checkedItems, setCheckedItems] = useState<string[]>(["all"])
+  const allChecked = checkedItems.every(Boolean)
+  const isIndeterminate = checkedItems.some(Boolean) && !allChecked
+
+  // handle onChange checkbox
+  const handleOnCheckedItem = (isChecked: boolean, type: string, value: string) => {
+    let arrTemp = [...checkedItems]
+    if (checkedItems.includes(value)) {
+      if (arrTemp.length === 1) return
+      arrTemp = arrTemp.filter((item) => item !== value)
+    } else {
+      if (value === "all") arrTemp = ["all"]
+      else {
+        arrTemp = arrTemp.filter((item) => item !== "all")
+        arrTemp.push(value)
+      }
+    }
+    console.log(arrTemp, "queryyyy")
+    setCheckedItems(arrTemp)
+    setFilter({ type, value: arrTemp })
+  }
+
   const handleUrl = () => {
     if (!filter) return
     console.log(filter, "filter ...")
     if (filter.value[0] === "all") return router.push(`${slug}`)
 
     console.log("current param", f)
-    if (!f) {
-    } else {
+    if (f) {
       const q = queryString.parse(`filters[]=${f}`, {
         arrayFormat: "bracket-separator",
         arrayFormatSeparator: "|",
@@ -51,28 +71,6 @@ const CheckBox: React.FC<TCheckBox> = ({ name, title, list }) => {
   useEffect(() => {
     handleUrl()
   }, [filter])
-
-  const [checkedItems, setCheckedItems] = useState<string[]>(["all"])
-  const allChecked = checkedItems.every(Boolean)
-  const isIndeterminate = checkedItems.some(Boolean) && !allChecked
-
-  // handle onChange checkbox
-  const handleOnCheckedItem = (isChecked: boolean, type: string, value: string) => {
-    let arrTemp = [...checkedItems]
-    if (checkedItems.includes(value)) {
-      if (arrTemp.length === 1) return
-      arrTemp = arrTemp.filter((item) => item !== value)
-    } else {
-      if (value === "all") {
-        arrTemp = ["all"]
-      } else {
-        arrTemp = arrTemp.filter((item) => item !== "all")
-        arrTemp.push(value)
-      }
-    }
-    setCheckedItems(arrTemp)
-    setFilter({ type, value: arrTemp })
-  }
 
   return (
     <Stack spacing="4">
